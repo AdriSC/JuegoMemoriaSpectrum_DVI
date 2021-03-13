@@ -16,11 +16,20 @@ var MemoryGame = function(gs) {
 				i += 2;
 			}
 		}
+		/* Shuffle with sort
 		this.cards.sort(function(a, b){
-			return Math.floor(Math.random() * 3) - 1
+			return Math.floor(Math.random() * 3) - 1;
 		})
+		*/
+
+		// Shuffle with Fisher-Yates
+		for(let i = this.cards.length - 1; i > 0; i--){
+			const j = Math.floor(Math.random() * (i + 1));
+			const temp = this.cards[i];
+			this.cards[i] = this.cards[j];
+			this.cards[j] = temp;
+		}
 		this.loop();
-		console.log("cards", this.cards);
 	}
 
 	this.draw = function(){
